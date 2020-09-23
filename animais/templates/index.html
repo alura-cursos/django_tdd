@@ -1,21 +1,65 @@
-<!DOCTYPE html>
+{% load static%}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Busca animal</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" media="screen" />
+  <title>Busca animal</title>
 </head>
 <body>
-    <a class="navbar">Busca Animal</a>
-    <form>
-        <input type="text" id="buscar-animal" placeholder="Exemplo: leão, urso..." name='buscar'>
-        <button type="submit">Pesquisar</button>
+  
+
+<nav class="navbar">
+  <a class="navbar__link" href="#">Busca Animal</a>
+</nav>
+
+<section class="search-section">
+    <h1 class="title">Pesquise um animal e descubra <span class="title__detail">4 coisas</span> sobre ele</h1>
+
+    <form class="form">
+      <input class="form__input" type="text" class="form-control" id="buscar-animal" name="buscar" placeholder="Exemplo: leão, urso..." aria-label="Buscar animal"/>
+        
+      <button type="submit" class="button">Pesquisar</button>
     </form>
-    {% for caracteristica in caracteristicas %}
-        <div class="result-description">{{caracteristica.nome_animal}}</div>
-        <div class="result-description">{{caracteristica.predador}}</div>
-        <div class="result-description">{{caracteristica.venenoso}}</div>
-        <div class="result-description">{{caracteristica.domestico}}</div>
-    {% endfor %}
+</section>
+    {% for caracteristica in caracteristicas%}
+<section class="results-section">
+  <ul class="results">
+    <li class="result">
+      <h3 class="result-description">
+        Nome do animal
+      </h3>
+      <h2 class="result-title">
+        {{caracteristica.nome_animal}}
+      </h2>
+    </li>
+    <li class="result">
+      <h2 class="result-description">
+        Predador
+      </h2>
+      <h3 class="result-description">
+        {{caracteristica.predador}}
+      </h3>
+    </li>
+    <li class="result">
+      <h2 class="result-description">
+        Venenoso
+      </h2>
+      <h3 class="result-description">
+        {{caracteristica.venenoso}}
+      </h3>
+    </li>
+    <li class="result">
+      <h2 class="result-description">
+        Doméstico
+      </h2>
+      <h3 class="result-description">
+        {{caracteristica.domestico}}
+      </h3>
+    </li>
+  </ul>
+</section>
+{% endfor %}
+        
 </body>
 </html>
